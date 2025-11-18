@@ -1,0 +1,10 @@
+/* resources/css/app.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:not(:has(nav)) .hide-when-no-nav { display: none; }
+
+[x-cloak] {
+    display: none !important;
+}
