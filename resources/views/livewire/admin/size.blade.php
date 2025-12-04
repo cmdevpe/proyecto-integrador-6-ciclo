@@ -5,7 +5,7 @@
             'url' => route('dashboard'),
         ],
         [
-            'label' => __('Categorías'),
+            'label' => __('Tallas'),
             'active' => true,
         ],
     ]" :show-title="true" />
@@ -53,7 +53,7 @@
                                     d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z" />
                             </svg>
                         </x-slot:icon>
-                        Crear nueva categoría
+                        Crear nueva talla
                     </x-button>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-4 py-3">#</th>
-                            <th scope="col" class="px-4 py-3">Categoría</th>
+                            <th scope="col" class="px-4 py-3">Talla</th>
                             <th scope="col" class="px-4 py-3">Estado</th>
                             <th scope="col" class="px-4 py-3">Fecha de creación</th>
                             <th scope="col" class="px-4 py-3">Última actualización</th>
@@ -72,19 +72,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($categories as $category)
-                            <tr wire:key="category-{{ $category->id }}"
+                        @forelse ($sizes as $size)
+                            <tr wire:key="size-{{ $size->id }}"
                                 class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $loop->iteration }}
                                 </td>
 
                                 <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $category->name }}
+                                    {{ $size->name }}
                                 </td>
 
                                 <td class="px-4 py-2">
-                                    @if ($category->status)
+                                    @if ($size->status)
                                         <span
                                             class="bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Activo</span>
                                     @else
@@ -94,11 +94,11 @@
                                 </td>
 
                                 <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $category->created_at->diffForHumans() }}
+                                    {{ $size->created_at->diffForHumans() }}
                                 </td>
 
                                 <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $category->updated_at->diffForHumans() }}
+                                    {{ $size->updated_at->diffForHumans() }}
                                 </td>
 
                                 <td class="px-4 py-2 flex items-center justify-end">
@@ -125,13 +125,13 @@
                                                 <li>
                                                     <button type="button"
                                                         class="w-full text-left block py-2 px-4 rounded-md text-sm text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-100 dark:hover:text-white"
-                                                        @click.prevent="$wire.edit({{ $category->id }}); open = false">Editar</button>
+                                                        @click.prevent="$wire.edit({{ $size->id }}); open = false">Editar</button>
                                                 </li>
                                             </ul>
                                             <div class="p-1">
                                                 <button type="button"
                                                     class="w-full text-left block py-2 px-4 rounded-md text-sm text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-100 dark:hover:text-white"
-                                                    @click.prevent="Swal.fire({title: '¿Estás seguro?', text: '¡No podrás revertir esto!', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: '¡Sí, eliminar!', cancelButtonText: 'Cancelar'}).then((result) => { if (result.isConfirmed) { $wire.delete({{ $category->id }}); open = false; }})">
+                                                    @click.prevent="Swal.fire({title: '¿Estás seguro?', text: '¡No podrás revertir esto!', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: '¡Sí, eliminar!', cancelButtonText: 'Cancelar'}).then((result) => { if (result.isConfirmed) { $wire.delete({{ $size->id }}); open = false; }})">
                                                     Eliminar
                                                 </button>
                                             </div>
@@ -188,26 +188,26 @@
                     </tbody>
                 </table>
             </div>
-            @if ($categories->hasPages())
+            @if ($sizes->hasPages())
                 <div class="p-4">
-                    {{ $categories->links() }}
+                    {{ $sizes->links() }}
                 </div>
             @endif
         </div>
     </div>
 
-    <x-modal name="category-form-modal" maxWidth="lg" :static="true">
+    <x-modal name="size-form-modal" maxWidth="lg" :static="true">
         <x-slot:header>
-            <h3 class="text-xl font-semibold">{{ $form->category_id ? 'Editar categoría' : 'Crear nueva categoría' }}
+            <h3 class="text-xl font-semibold">{{ $form->size_id ? 'Editar talla' : 'Crear nueva talla' }}
             </h3>
         </x-slot:header>
         <x-slot:body>
             <form class="space-y-4 md:space-y-5" wire:submit.prevent="save"
-                wire:key="category-form-{{ $form->category_id ?? 'new' }}">
+                wire:key="size-form-{{ $form->size_id ?? 'new' }}">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="md:col-span-2">
                         <x-input wire:model.blur="form.name" type="text" name="form.name" id="name"
-                            label="{{ __('Nombre') }}" placeholder="{{ __('Ingresa el nombre de la categoría') }}"
+                            label="{{ __('Nombre') }}" placeholder="{{ __('Ingresa el nombre de la talla') }}"
                             :state="$errors->has('form.name') ? 'error' : null" required autocomplete="name" />
                     </div>
                 </div>
@@ -221,13 +221,13 @@
                             </svg>
                         </x-slot:icon>
                         <x-slot:loading>
-                            {{ $form->category_id ? 'Actualizando categoría' : 'Creando nueva categoría' }}
+                            {{ $form->size_id ? 'Actualizando talla' : 'Creando nueva talla' }}
                         </x-slot:loading>
-                        {{ $form->category_id ? 'Actualizar categoría' : 'Crear nueva categoría' }}
+                        {{ $form->size_id ? 'Actualizar talla' : 'Crear nueva talla' }}
                     </x-button>
 
                     <x-button class="px-4 py-2" color="light"
-                        @click="$dispatch('close-modal', { name: 'category-form-modal' })">
+                        @click="$dispatch('close-modal', { name: 'size-form-modal' })">
                         Cancelar
                     </x-button>
                 </div>

@@ -52,7 +52,7 @@ class SidebarService
             ))
                 ->addChild(new Link(
                     text: 'Productos',
-                    route: null,
+                    route: 'products',
                     //icon: 'fa-solid fa-boxes-stacked',
                     //permission: 'ver_dashboard',
                     //modulePermissions: ['ver_dashboard']
@@ -66,28 +66,21 @@ class SidebarService
                 ))
                 ->addChild(new Link(
                     text: 'Colores',
-                    route: null,
+                    route: 'colors',
                     //icon: 'fa-solid fa-boxes-stacked',
                     //permission: 'ver_dashboard',
                     //modulePermissions: ['ver_dashboard']
                 ))
                 ->addChild(new Link(
                     text: 'Marcas',
-                    route: null,
-                    //icon: 'fa-solid fa-boxes-stacked',
-                    //permission: 'ver_dashboard',
-                    //modulePermissions: ['ver_dashboard']
-                ))
-                ->addChild(new Link(
-                    text: 'Modelos',
-                    route: null,
+                    route: 'brands',
                     //icon: 'fa-solid fa-boxes-stacked',
                     //permission: 'ver_dashboard',
                     //modulePermissions: ['ver_dashboard']
                 ))
                 ->addChild(new Link(
                     text: 'Tallas',
-                    route: null,
+                    route: 'sizes',
                     //icon: 'fa-solid fa-boxes-stacked',
                     //permission: 'ver_dashboard',
                     //modulePermissions: ['ver_dashboard']

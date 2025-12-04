@@ -20,7 +20,7 @@
                     placeholder="{{ __('Enter your phone number') }}" :state="$errors->has('phone') ? 'error' : null" autocomplete="tel" />
             </div>
 
-            <div class="col-span-6 sm:col-span-3">
+            {{-- <div class="col-span-6 sm:col-span-3">
                 <x-select wire:model.blur="role" name="role" label="{{ __('Role') }}" :state="$errors->has('role') ? 'error' : null">
                     <option selected>{{ __('Select your role') }}</option>
                     <option value="US">United States</option>
@@ -28,7 +28,7 @@
                     <option value="FR">France</option>
                     <option value="DE">Germany</option>
                 </x-select>
-            </div>
+            </div> --}}
 
             <div class="col-span-6 sm:col-full">
                 <x-button type="submit" wireTarget="updateProfile">

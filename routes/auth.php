@@ -1,18 +1,22 @@
 <?php
 
+use App\Livewire\Admin\Size;
+use App\Livewire\Admin\User;
+use App\Livewire\Auth\Login;
+use App\Livewire\Admin\Brand;
+use App\Livewire\Admin\Color;
+use App\Livewire\Admin\Product;
+use App\Livewire\Auth\Register;
 use App\Livewire\Admin\Category;
+use App\Livewire\Admin\Dashboard;
+use App\Livewire\Auth\MagicLogin;
+use App\Livewire\Auth\VerifyCode;
+use App\Livewire\Auth\ResetPassword;
+use App\Livewire\Auth\ForgotPassword;
+use App\Livewire\Profile\ProfileShow;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\MagicLinkController;
 use App\Http\Controllers\Auth\SocialiteController;
-use App\Livewire\Auth\ForgotPassword;
-use App\Livewire\Auth\Login;
-use App\Livewire\Auth\MagicLogin;
-use App\Livewire\Auth\Register;
-use App\Livewire\Auth\ResetPassword;
-use App\Livewire\Auth\VerifyCode;
-use App\Livewire\Admin\Dashboard;
-use App\Livewire\Admin\User;
-use App\Livewire\Profile\ProfileShow;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,5 +58,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/usuarios/perfil', ProfileShow::class)->name('profile.show');
 
         Route::get('/categorias', Category::class)->name('categories');
+        Route::get('/colores', Color::class)->name('colors');
+        Route::get('/marcas', Brand::class)->name('brands');
+        Route::get('/tallas', Size::class)->name('sizes');
+        Route::get('/productos', Product::class)->name('products');
     });
 });

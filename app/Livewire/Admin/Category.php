@@ -3,10 +3,10 @@
 namespace App\Livewire\Admin;
 
 use App\Livewire\Forms\Admin\CategoryForm;
+use App\Models\Category as categoryModel;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
-use App\Models\Category as categoryModel;
 use Livewire\WithPagination;
 
 #[Layout('layouts.app')]
@@ -14,12 +14,8 @@ use Livewire\WithPagination;
 class Category extends Component
 {
     use WithPagination;
-
     public CategoryForm $form;
-
     public $search = '';
-    public $showModal = false;
-    public $editId = null;
 
     public function updatingSearch()
     {
@@ -67,7 +63,7 @@ class Category extends Component
             })
             ->orderBy('id', 'desc')
             ->paginate(5);
-            
+
         return view('livewire.admin.category', compact('categories'));
     }
 }

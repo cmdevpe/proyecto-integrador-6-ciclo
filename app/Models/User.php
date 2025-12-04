@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\SocialAccount;
 use App\Models\OneTimePassword;
 use App\Contracts\MustVerifyAccount;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -18,6 +19,7 @@ class User extends AuthenticatableUser implements MustVerifyAccount
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -83,7 +85,7 @@ class User extends AuthenticatableUser implements MustVerifyAccount
                 }
 
                 $socialAvatar = $this->socialAccounts()->whereNotNull('avatar_url')->value('avatar_url');
-                
+
                 if ($socialAvatar) {
                     return $socialAvatar;
                 }
