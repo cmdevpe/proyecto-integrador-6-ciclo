@@ -171,14 +171,6 @@ Si deseas contribuir al proyecto:
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-## 📝 Licencia
-
-[Especifica la licencia de tu proyecto]
-
-## 📧 Contacto
-
-[Tu información de contacto o del equipo]
-
 ---
 
 **¡Disfruta desarrollando! 🎉**
